@@ -1,0 +1,113 @@
+db.students.drop()
+db.createCollection("students")
+db.students.insertMany(
+    [
+        { _id: "123", name: "Haidm", CCCD: '01239243491', birth: new Date("2024-10-04T10:30:00Z"), class: "AT2", hometown: "Ha Noi" },
+        { _id: "234", name: "Dung", CCCD: '01233239243491', birth: new Date("2024-10-04T10:30:00Z"), class: "AT1", hometown: "Hai Phong" },
+        { _id: "345", name: "Huong", CCCD: '53456755346', birth: new Date("2024-10-04T10:30:00Z"), class: "AT1", hometown: "Nam Dinh" },
+        { _id: "456", name: "Lich", CCCD: '0123323456459243491', birth: new Date("2024-10-04T10:30:00Z"), class: "AT1", hometown: "Thanh Hoa" },
+        { _id: "567", name: "Anh", CCCD: '012332375679243491', birth: new Date("2024-10-04T10:30:00Z"), class: "AT1", hometown: "Bac Giang" },
+        { _id: "678", name: "Van", CCCD: '56775675656', birth: new Date("2024-10-04T10:30:00Z"), class: "AT1", hometown: "Lao Cai" }
+    ]
+)
+
+db.categories.drop()
+db.createCollection("categories")
+db.categories.insertMany(
+    [
+        { _id: "1", name: "master", tags: ["tag1", "tag2", "tag3"] },
+        { _id: "2", name: "normal", tags: ["tag4", "tag5"] },
+        { _id: "3", name: "higher_class", tags: ["tag4", "tag6"] }
+    ]
+)
+
+db.rooms.drop()
+db.createCollection("rooms")
+db.rooms.insertMany(
+    [
+        { number: "102", type: '1', price_per_person: 500, number_of_persons: 3 },
+        { number: "103", type: '2', price_per_person: 200, number_of_persons: 5 },
+        { number: "104", type: '3', price_per_person: 1000, number_of_persons: 2 },
+        { number: "105", type: '1', price_per_person: 500, number_of_persons: 5 },
+        { number: "106", type: '3', price_per_person: 500, number_of_persons: 3 },
+        { number: "107", type: '1', price_per_person: 1000, number_of_persons: 2 },
+        { number: "108", type: '2', price_per_person: 200, number_of_persons: 5 },
+    ]
+)
+
+db.room_students.drop()
+db.createCollection("room_students")
+db.room_students.insertMany(
+    [
+        { number: "102", student_id: '123'},
+        { number: "103", student_id: '234'},
+        { number: "104", student_id: '345'},
+        { number: "105", student_id: '456'},
+        { number: "106", student_id: '567'},
+        { number: "107", student_id: '678'}
+    ]
+)
+
+db.guests.drop()
+db.createCollection("guests")
+db.guests.insertMany(
+    [
+        { name: "102", CCCD: "123", birth: new Date("2024-10-04T10:30:00Z"), student_id: "123", amount: 3, times: [new Date("2024-10-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z")] },
+        { name: "103", CCCD: "234", birth: new Date("2024-10-04T10:30:00Z"), student_id: "234", amount: 2, times: [new Date("2024-10-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z")] },
+        { name: "104", CCCD: "345", birth: new Date("2024-10-04T10:30:00Z"), student_id: "345", amount: 2, times: [new Date("2024-10-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z")] },
+        { name: "105", CCCD: "456", birth: new Date("2024-10-04T10:30:00Z"), student_id: "456", amount: 2, times: [new Date("2024-10-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z")] },
+        { name: "106", CCCD: "567", birth: new Date("2024-10-04T10:30:00Z"), student_id: "567", amount: 1, times: [new Date("2024-10-04T10:30:00Z")] },
+        { name: "107", CCCD: "678", birth: new Date("2024-10-04T10:30:00Z"), student_id: "678", amount: 1, times: [new Date("2024-10-04T10:30:00Z")] },
+    ]
+)
+
+db.services.drop()
+db.createCollection("services")
+db.services.insertMany(
+    [
+        { _id: "1", name: "bim bim", code: 14354, price: 10 },
+        { _id: "2", name: "an trua", code: 1443354, price: 30 },
+        { _id: "3", name: "an sang", code: 14354354, price: 20 },
+        { _id: "4", name: "an toi", code: 1435465, price: 30 },
+        { _id: "5", name: "gui xe", code: 1435465, price: 100 },
+    ]
+)
+
+db.student_services.drop()
+db.createCollection("student_services")
+db.student_services.insertMany(
+    [
+        { service_id: "1", student_id: "123"},
+        { service_id: "2", student_id: "234"},
+        { service_id: "3", student_id: "567"},
+        { service_id: "4", student_id: "678"},
+    ]
+)
+
+db.parkings.drop()
+db.createCollection("parkings")
+db.parkings.insertMany(
+    [
+        { plate: "129923", student_id: "123"},
+        { plate: "32324", student_id: "123"},
+        { plate: "23e23", student_id: "234"},
+        { plate: "434", student_id: "567"},
+        { plate: "4d435", student_id: "678"},
+    ]
+)
+
+
+db.parking_in_outs.drop()
+db.createCollection("parking_in_outs")
+db.parking_in_outs.insertMany(
+    [
+        { plate: "129923", date: new Date("2024-10-04T10:30:00Z")},
+        { plate: "23e23", date: new Date("2024-10-04T10:30:00Z")},
+        { plate: "23e23", date: new Date("2024-10-04T10:30:00Z")},
+        { plate: "23e23", date: new Date("2024-10-04T10:30:00Z")},
+        { plate: "23e23", date: new Date("2024-10-04T10:30:00Z")},
+        { plate: "23e23", date: new Date("2024-10-04T10:30:00Z")},
+        { plate: "434", date: new Date("2024-10-04T10:30:00Z")},
+        { plate: "4d435", date: new Date("2024-10-04T10:30:00Z")},
+    ]
+)
