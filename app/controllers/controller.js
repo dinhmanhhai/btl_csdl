@@ -6,7 +6,7 @@ const Room = db.room;
 const StudentService = db.student_service;
 const Category = db.category;
 const Parking = db.parking;
-const ParkingInOut = db.parking_in_out;
+const ParkingInOut = db.parking_transactions;
 const Service = db.service;
 
 exports.costPerMonth = (req, res) => {

@@ -13,6 +13,6 @@ db.guest = require("./guests.model.js")(mongoose);
 db.service = require("./services.model.js")(mongoose);
 db.student_service = require("./student_services.model.js")(mongoose);
 db.parking = require("./parkings.model.js")(mongoose);
-db.parking_in_out = require("./parking_in_outs.model.js")(mongoose);
+db.parking_transactions = require("./parking_transactions.model.js")(mongoose);
 
 module.exports = db;
