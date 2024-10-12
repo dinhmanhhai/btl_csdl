@@ -14,5 +14,6 @@ db.service = require("./services.model.js")(mongoose);
 db.student_service = require("./student_services.model.js")(mongoose);
 db.parking = require("./parkings.model.js")(mongoose);
 db.parking_transactions = require("./parking_transactions.model.js")(mongoose);
+db.student_bills = require("./student_bills.model.js")(mongoose);
 
 module.exports = db;

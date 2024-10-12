@@ -208,7 +208,6 @@ db.student_services.aggregate([
 ])
 
 
-
 // Các ứng dụng kiểm tra các ràng buộc về số người ở trong phòng, số xe
 // tháng tối đa của mỗi sinh viên được đăng ký,… cần phải được thể hiện.
 

@@ -5,7 +5,7 @@ module.exports = app => {
 
   router.get("/", controller.costPerMonth);
 
-  router.get("/", controller.serviceCostPerMonth);
+  router.get("/bills", controller.serviceCostPerMonth);
 
   router.get("/guests", controller.guest);
 
