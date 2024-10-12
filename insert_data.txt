@@ -1,3 +1,4 @@
+use csdl
 db.students.drop()
 db.createCollection("students")
 db.students.insertMany(
@@ -25,13 +26,13 @@ db.rooms.drop()
 db.createCollection("rooms")
 db.rooms.insertMany(
     [
-        { number: "102", type: '1', price_per_person: 500, number_of_persons: 3 },
-        { number: "103", type: '2', price_per_person: 200, number_of_persons: 5 },
-        { number: "104", type: '3', price_per_person: 1000, number_of_persons: 2 },
-        { number: "105", type: '1', price_per_person: 500, number_of_persons: 5 },
-        { number: "106", type: '3', price_per_person: 500, number_of_persons: 3 },
-        { number: "107", type: '1', price_per_person: 1000, number_of_persons: 2 },
-        { number: "108", type: '2', price_per_person: 200, number_of_persons: 5 },
+        { number: "102", category_id: '1', price_per_person: 500, number_of_persons: 3 },
+        { number: "103", category_id: '2', price_per_person: 200, number_of_persons: 5 },
+        { number: "104", category_id: '3', price_per_person: 1000, number_of_persons: 2 },
+        { number: "105", category_id: '1', price_per_person: 500, number_of_persons: 5 },
+        { number: "106", category_id: '3', price_per_person: 500, number_of_persons: 3 },
+        { number: "107", category_id: '1', price_per_person: 1000, number_of_persons: 2 },
+        { number: "108", category_id: '2', price_per_person: 200, number_of_persons: 5 },
     ]
 )
 
@@ -52,12 +53,12 @@ db.guests.drop()
 db.createCollection("guests")
 db.guests.insertMany(
     [
-        { name: "102", CCCD: "123", birth: new Date("2024-10-04T10:30:00Z"), student_id: "123", amount: 3, times: [new Date("2024-10-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z")] },
-        { name: "103", CCCD: "234", birth: new Date("2024-10-04T10:30:00Z"), student_id: "234", amount: 2, times: [new Date("2024-10-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z")] },
-        { name: "104", CCCD: "345", birth: new Date("2024-10-04T10:30:00Z"), student_id: "345", amount: 2, times: [new Date("2024-10-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z")] },
-        { name: "105", CCCD: "456", birth: new Date("2024-10-04T10:30:00Z"), student_id: "456", amount: 2, times: [new Date("2024-10-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z")] },
-        { name: "106", CCCD: "567", birth: new Date("2024-10-04T10:30:00Z"), student_id: "567", amount: 1, times: [new Date("2024-10-04T10:30:00Z")] },
-        { name: "107", CCCD: "678", birth: new Date("2024-10-04T10:30:00Z"), student_id: "678", amount: 1, times: [new Date("2024-10-04T10:30:00Z")] },
+        { name: "102", CCCD: "123", birth: new Date("2024-10-04T10:30:00Z"), student_id: "123", visit_dates: [new Date("2024-09-04T10:30:00Z"), new Date("2024-08-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z")] },
+        { name: "103", CCCD: "234", birth: new Date("2024-10-04T10:30:00Z"), student_id: "234", visit_dates: [new Date("2024-09-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z")] },
+        { name: "104", CCCD: "345", birth: new Date("2024-10-04T10:30:00Z"), student_id: "345", visit_dates: [new Date("2024-08-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z")] },
+        { name: "105", CCCD: "456", birth: new Date("2024-10-04T10:30:00Z"), student_id: "456", visit_dates: [new Date("2024-07-04T10:30:00Z"), new Date("2024-10-04T10:30:00Z")] },
+        { name: "106", CCCD: "567", birth: new Date("2024-10-04T10:30:00Z"), student_id: "567", visit_dates: [new Date("2024-08-04T10:30:00Z")] },
+        { name: "107", CCCD: "678", birth: new Date("2024-10-04T10:30:00Z"), student_id: "678", visit_dates: [new Date("2024-10-04T10:30:00Z")] },
     ]
 )
 
@@ -81,6 +82,9 @@ db.student_services.insertMany(
         { service_id: "2", student_id: "234"},
         { service_id: "3", student_id: "567"},
         { service_id: "4", student_id: "678"},
+        { service_id: "4", student_id: "678"},
+        { service_id: "4", student_id: "678"},
+        { service_id: "4", student_id: "678"},
     ]
 )
 
@@ -96,10 +100,9 @@ db.parkings.insertMany(
     ]
 )
 
-
-db.parking_in_outs.drop()
-db.createCollection("parking_in_outs")
-db.parking_in_outs.insertMany(
+db.parking_transactions.drop()
+db.createCollection("parking_transactions")
+db.parking_transactions.insertMany(
     [
         { plate: "129923", date: new Date("2024-10-04T10:30:00Z")},
         { plate: "23e23", date: new Date("2024-10-04T10:30:00Z")},
@@ -111,3 +114,101 @@ db.parking_in_outs.insertMany(
         { plate: "4d435", date: new Date("2024-10-04T10:30:00Z")},
     ]
 )
+
+db.student_bills.drop()
+db.createCollection("student_bills")
+db.student_bills.insertMany(
+    [
+        { student_id: "123", rent: 300, service_bill: 1000, parking_free: 100, total_fee: 1400},
+        { student_id: "234", rent: 300, service_bill: 1000, parking_free: 100, total_fee: 1400},
+        { student_id: "345", rent: 300, service_bill: 2000, parking_free: 100, total_fee: 2400},
+        { student_id: "456", rent: 500, service_bill: 1000, parking_free: 100, total_fee: 1900},
+        { student_id: "567", rent: 500, service_bill: 4000, parking_free: 100, total_fee: 4500},
+        { student_id: "678", rent: 300, service_bill: 1500, parking_free: 200, total_fee: 2000},
+    ]
+)
+
+
+// Liệt kê thông tin sinh viên trong KTX cùng số tiền mà họ phải trả cho tất cả
+// các dịch vụ (bao gồm cả tiền phòng) đã sử dụng trong mỗi tháng. Thông tin
+// này có thể in theo danh sách hoặc theo từng người.
+
+db.rooms.aggregate([
+  {
+    $lookup: {
+      from: "categories",
+      localField: "category_id",
+      foreignField: "_id",
+      as: "category_info",
+    }
+  }
+])
+
+// Liệt kê thông tin sinh viên cùng tên dịch vụ, tổng giá mỗi dịch vụ mà họ sử
+// dụng trong khoảng thời gian từ ngày bắt đầu đến ngày kết thúc.
+
+db.student_bills.find({})
+
+// Liệt kê thông tin sinh viên cùng thông tin về các khách đến thăm họ trong
+// tuần, hoặc tháng, cùng số lần mỗi khách đến chơi.
+
+db.guests.aggregate([
+  {
+    $match: {
+      visit_dates: {
+        $elemMatch: {
+          $gte: new Date("2024-10-01T00:00:00Z"),
+          $lte: new Date("2024-10-05T00:00:00Z")
+        }
+      }
+    }
+  },
+  {
+    $project: {
+      name: 1,
+      CCCD: 1,
+      birth: 1,
+      student_id: 1,
+      visit_dates: {
+        $filter: {
+          input: "$visit_dates",
+          as: "date",
+          cond: {
+            $and: [
+              { $gte: ["$$date", new Date("2024-10-01T00:00:00Z")] },
+              { $lte: ["$$date", new Date("2024-10-05T00:00:00Z")] }
+            ]
+          }
+        }
+      }
+    }
+  }
+])
+
+
+// Liệt kê danh mục các dịch vụ cùng doanh thu của mỗi dịch vụ trong KTX trong mỗi tháng.
+db.student_services.aggregate([
+  {
+    $lookup: {
+      from: "services",
+      localField: "service_id",
+      foreignField: "_id",
+      as: "service_info"
+    }
+  },
+  {
+    $unwind: "$service_info"
+  },
+  {
+    $group: {
+      _id: "$service_id",
+      totalPrice: { $sum: "$service_info.price" }
+    }
+  }
+])
+
+
+
+// Các ứng dụng kiểm tra các ràng buộc về số người ở trong phòng, số xe
+// tháng tối đa của mỗi sinh viên được đăng ký,… cần phải được thể hiện.
+
