@@ -1,18 +1,10 @@
 const express = require("express");
-const cors = require("cors");
 
 const app = express();
 
-// var corsOptions = {
-//   origin: "http://localhost:8081"
-// };
-//
-// app.use(cors(corsOptions));
 
-// parse requests of content-type - application/json
 app.use(express.json());
 
-// parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
@@ -28,11 +20,6 @@ db.mongoose
     console.log("Cannot connect to the database!", err);
     process.exit();
   });
-
-
-app.get("/", (req, res) => {
-  res.json({ message: "Running node js." });
-});
 
 require("./app/routes/routes")(app);
 
